@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Middleware cors
 const corsOptions = {
-  origin: 'https://effortless-ganache-d7ba11.netlify.app',
+  origin: 'https://authentification-si.netlify.app',
   methods: 'GET,POST',
   credentials: true,
   optionsSuccessStatus: 204,

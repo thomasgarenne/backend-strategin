@@ -13,9 +13,9 @@ const register = async (req, res, next) => {
 			password: req.body.password,
 		});
 	
-		const savedUser = await user.save();
-	
-		res.status(201).json({ savedUser });
+		await user.save();
+		
+		res.status(201).json({ message: "User saved successfully !" });
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });
@@ -57,11 +57,13 @@ const login = async (req, res, next) => {
 const users = async (req, res, next) => {
 	try {
 		const users = await User.find();
+		const usersInfos = users.map(({ id, email }) => ({ id, email }));
+
 	  
 		if (users.length === 0) {
 			res.status(404).json({ message: "No user to display" });
 		} else {
-			res.status(200).json(users);
+			res.status(200).json(usersInfos);
 		}
 	} catch (error) {
 		console.error(error);
